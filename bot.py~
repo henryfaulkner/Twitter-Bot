@@ -17,8 +17,7 @@ try:
     print("Authentication")
     timeline = api.home_timeline()
 
-    while True:
-        api.update_status("hoes mad")
-        time.sleep(60*2) #tweets every 2 minutes
+    api.update_status("hoes mad")
+    #time.sleep(60*2) #tweets every 2 minutes
 except:
     print("Error during authenication")
