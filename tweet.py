@@ -14,9 +14,9 @@ try:
         print(f"{tweet.user.name} said {tweet.text}")'''
 
     #tweets to feed
-    '''for i in range(0, 7):
-        api.update_status("Hello, Twitter, ", i)'''
-    
+    #for i in range(0, 7):
+    api.update_status("YG be more weeb than blood. Dude always saying uwu & shyt")
+
     #prints a user's bio details & followers
     '''user = api.get_user("KidCudi")
     print("User detail:")
@@ -28,6 +28,6 @@ try:
         print(follower.name)'''
 
     #following an account
-    api.create_friendship("kanyewest")
+    #api.create_friendship("kanyewest")
 except:
     print("Error during authentication")
