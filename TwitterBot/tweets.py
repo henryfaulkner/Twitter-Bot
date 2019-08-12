@@ -1,0 +1,124 @@
+import tweepy
+import csv
+import os
+
+class tweets:
+
+    def __init__(self):
+        '''
+        Constructor
+        Authenticates to Twitter
+        :param: username: Twitter handle of the user
+        '''
+        abs_path = os.path.abspath(os.path.dirname(__file__))
+        file = open( abs_path + "/../AccessKeysd.csv", 'r')
+        reader = csv.reader(file)
+        self.lastTweetFile = abs_path + "/lastTweetID.txt"
+        if(not os.path.exists(self.lastTweetFile)):
+            lastIDFile = open(abs_path + "/lastTweetID.txt","w+")
+            lastIDFile.close()
+
+        #consumer key & consumer secret key
+        auth = tweepy.OAuthHandler("7XQIiej0rjCgtF2cyh7rHLM18", "Y5D5YbXMZbBbhnFb5GMNXG17TL3vvB0ZicyWCiCm3Wvk9J6C0e")
+        #access key & access secret key
+        auth.set_access_token("1158777417735036934-yWh83v9i2r1XhRmJzlbbqH1OsZiIjD", "2JJh0OlCjrxuajcbYgoyvTZJTQO3vyOVt0PNhAfSNz3py")
+        
+        #call api
+        self.api = tweepy.API(auth)
+
+    def getTweets(self, username):
+        '''
+        extracts most recent 100 tweets
+        '''
+        numTweets = 100
+        stringTweets = None
+        try:
+            tweets = self.api.user_timeline(username,tweet_mode="extended", count= numTweets)
+            newListOfTweets = [tweet.full_text for tweet in tweets]
+            #print(newListOfTweets)
+            stringTweets = (" ").join(newListOfTweets)
+        except:
+            print("Tweepy error calling user_timeline")
+
+
+        return stringOfTweets
+        
+    def postTweet(self, tweet, sendingUser, chosenUser, tweetID):
+        '''
+        Posts tweet
+        '''
+        finalTweet = "@" + sendingUser + " " + tweet + " (src: @" + chosenUser + ")"
+        try:
+            self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
+        except:
+            print("Tweepy error updating status")
+
+    def getRequests(self):
+        '''
+        Returns a list of 3-tuples of requested tweet IDs
+        (sendingUser, chosenUser, tweetID)
+        Received tweet will be in "@testBot87055890 @kanyewest"
+        format
+        '''
+        tuples = []
+        lastTweetID = self.getLastTweetID()
+        query = "@testBot87055890"
+        print("Processing...")
+        #load tweets addressed to host
+        try:
+            requests = self.api.search(q = query, count = 100)
+        except:
+            print("tweepy error in search")
+            
+        if(requests is not None):
+            # get tweet id, set new last id
+            newTweetID = requests[0]._json['id']
+            self.setLastTweetID(newTweetID)
+
+            for tweet in requests:
+                # get current ID, sending user, and madlibUser
+                tweetID = tweet._json['id']
+                text = tweet._json['text']
+                sendingUser = tweet._json['user']['screen_name']
+                textList = text.split(" ")
+
+                if(len(textList) > 1):
+                    chosenUser = textList[1][1:]
+                else:
+                    print("error with tweet")
+                    return None
+
+                # stop if you reach the last tweet replied to
+                if(tweetID == lastTweetID):
+                    return tuples
+                # append tuple to usernames list
+                tuples.append((sendingUser, chosenUser, tweetID))
+        return tuples
+
+    def getLastTweetID(self):
+        '''
+        Gets the last tweet ID stored in the lastTweetFile
+        :return: the last tweet ID as an int
+        '''
+        file = open(self.lastTweetFile, 'r')
+        id = file.read()
+        file.close()
+        id = id.strip(" ")
+        id = id.strip("\n")
+        if(id is not None and id is not ''):
+            id = int(id)
+        return id
+
+    def setLastTweetID(self, id):
+        '''
+        Erases the lastTweetFile
+        Makes a new one to store the new last tweet ID
+        :param id: an int ID to be stored
+        '''
+        os.remove(self.lastTweetFile)
+        file = open(self.lastTweetFile, 'w')
+        file.write(str(id))
+        file.close()
+        
+        
+    
