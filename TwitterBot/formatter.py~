@@ -1,0 +1,9 @@
+import csv
+import random
+import os
+
+class formatter:
+    '''
+    Handles getting random snetence structure and uses text  replacement
+    to place parts of speech into madlib
+    '''
