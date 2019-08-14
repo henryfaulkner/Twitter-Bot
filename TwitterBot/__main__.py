@@ -38,7 +38,29 @@ def main():
         time.sleep(sleepMin * 60)
 
 def generateTweet(sendingUser, chosenUser, tweetID, twitterInterface):
+    #pass username to getTweets, return a list of words
+    tweets = twitterInterface.get_tweets(chosenUser)
+    if(tweets is None):
+        return #do nothing
+    #unique takes TextBlob as param, return TextBlob
+    uniqueParser = unique(tweets)
+    uniqueStr = uniqueParser.cleanTweets()
+    #pass refinedList to parser to get a dictionary
+    tweetBlob = TextBlob(uniqueStr)
+    classifier = classifyWords(tweetBlob)
+    tweetDict = classifier.createWordDictionary()
+
+    #pass the dictionary to create madlibs, return a string
+    sentenceGenerator = formatter(tweetDict, file, preFormat, postFormat)
+    sentenceStr = sentenceGenerator.createSenctence()
+    # final tweet format: "@sendingUser 'sentence'"
+    if(int(tweetID) != 0):
+        twitterInterface.postTweet(sentenceStr, sendingUser, chosenUser, tweetID)
+    #print string
+    print(sentenceStr)
     
+if __name__ == '__main__':
+    main()
 
         
 

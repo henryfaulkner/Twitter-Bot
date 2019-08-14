@@ -4,7 +4,7 @@ import re
 class unique:
     '''
     class that remove words less than 4 letters long
-    and generally cleaning tweets of links and bullshit
+    and generally, cleaning tweets of links & anomolies
     '''
     def __init__(self, tweets):
         '''
