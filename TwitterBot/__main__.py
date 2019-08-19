@@ -1,8 +1,8 @@
 import sys
-from .ClassifyPoS import ClassifyPoS
-from .server import server
-from .tweets import tweets
-from .unique import unique
+from ClassifyPoS import ClassifyPoS
+from server import server
+from tweets import tweets
+from unique import unique
 from textblob import TextBlob
 import time
 
