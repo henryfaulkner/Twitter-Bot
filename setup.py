@@ -4,7 +4,7 @@ projectName = 'TwitterBot'
 
 setup(
     name = projectName,
-    version = '1.0'
+    version = '0.1dev',
     packages = [projectName],
     entry_points = {
         'console_scripts': [

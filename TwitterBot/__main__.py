@@ -1,8 +1,8 @@
 import sys
-from . import ClassifyPoS
-from . import server
-from . import tweets
-from . import unique
+from .classifyPoS import ClassifyPoS
+from .server import server
+from .tweets import tweets
+#from .unique import unique
 from textblob import TextBlob
 import time
 
@@ -22,7 +22,7 @@ def main():
     Each list is a different part of speech
     This dictionary is then passed to madlib which returns a finished madlib string
     '''
-
+    
     twitterInterface = tweets()#tweets.py class object
     #need requestTweets option that returns a list of 3-tuple usernames
     while(True):
@@ -43,8 +43,9 @@ def generateTweet(sendingUser, chosenUser, tweetID, twitterInterface):
     if(tweets is None):
         return #do nothing
     #unique takes TextBlob as param, return TextBlob
-    uniqueParser = unique(tweets)
-    uniqueStr = uniqueParser.cleanTweets()
+    ##CURRENTLY NOT USING UNIQUE
+    '''uniqueParser = unique(tweets)
+    uniqueStr = uniqueParser.cleanTweets()'''
     #pass refinedList to parser to get a dictionary
     tweetBlob = TextBlob(uniqueStr)
     classifier = classifyWords(tweetBlob)

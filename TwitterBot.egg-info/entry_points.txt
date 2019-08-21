@@ -1,0 +1,3 @@
+[console_scripts]
+TwitterBot = TwitterBot.__main__:main
+

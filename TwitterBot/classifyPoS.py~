@@ -1,5 +1,5 @@
 from textblob import TextBlob
-#from unique import unique
+from unique import unique
 
 class ClassifyPoS:
     '''Classifies twitter words into parts of speech'''
