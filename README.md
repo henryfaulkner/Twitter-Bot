@@ -1,6 +1,6 @@
 # Twitter-Bot
 
-##Dependencies (setup.py will automatically attempt to install these packages if you do not already have them):
+## Dependencies (setup.py will automatically attempt to install these packages if you do not already have them):
 Tweepy: Handles Twitter API calls
 pydoc3: creates HTML documentation
 TextBlob: Handles Natural Language Processing
@@ -8,5 +8,5 @@ Built-in Modules: csv: Reads from CSV files
 os: Gets absolute path of files
 random: Makes random choices
 
-##Execution:
+## Execution:
 	$python3 -m TwitterBot.__main__
