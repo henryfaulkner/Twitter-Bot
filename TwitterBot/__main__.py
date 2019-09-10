@@ -1,6 +1,6 @@
 import sys
 from .classifyPoS import ClassifyPoS
-from .server import server
+#from .server import server
 from .tweets import tweets
 #from .unique import unique
 from textblob import TextBlob
@@ -10,7 +10,7 @@ import time
 file = "/../Sentence_Structures/Sentences.csv" 
 preFormat = ""
 postFormat = ""
-sleepMin = 5
+sleepMin = 1
 
 def main():
     '''
