@@ -1,7 +1,7 @@
 from textblob import TextBlob
-from unique import unique
+from .unique import unique
 
-class ClassifyPoS:
+class classifyPoS:
     '''Classifies twitter words into parts of speech'''
 
     def __init__(self, words):

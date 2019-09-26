@@ -1,8 +1,8 @@
 import sys
-from .classifyPoS import ClassifyPoS
-from .server import server
+from .classifyPoS import classifyPoS
+#from .server import server
 from .tweets import tweets
-#from .unique import unique
+from .unique import unique
 from textblob import TextBlob
 import time
 
@@ -10,7 +10,7 @@ import time
 file = "/../Sentence_Structures/Sentences.csv" 
 preFormat = ""
 postFormat = ""
-sleepMin = 5
+sleepMin = 1
 
 def main():
     '''
@@ -20,7 +20,7 @@ def main():
     The clean data is then passed into a TextBlob object
     The TextBlob is passed to classifyWords which returns a dictionary of lists
     Each list is a different part of speech
-    This dictionary is then passed to madlib which returns a finished madlib string
+    This dictionary is then passed to sentence which returns a finished sentence string
     '''
     
     twitterInterface = tweets()#tweets.py class object
@@ -39,16 +39,16 @@ def main():
 
 def generateTweet(sendingUser, chosenUser, tweetID, twitterInterface):
     #pass username to getTweets, return a list of words
-    tweets = twitterInterface.get_tweets(chosenUser)
+    tweets = twitterInterface.getTweets(chosenUser)
     if(tweets is None):
         return #do nothing
     #unique takes TextBlob as param, return TextBlob
     ##CURRENTLY NOT USING UNIQUE
-    '''uniqueParser = unique(tweets)
-    uniqueStr = uniqueParser.cleanTweets()'''
+    uniqueParser = unique(tweets)
+    uniqueStr = uniqueParser.cleanTweets() 
     #pass refinedList to parser to get a dictionary
     tweetBlob = TextBlob(uniqueStr)
-    classifier = classifyWords(tweetBlob)
+    classifier = classifyPoS(tweetBlob)
     tweetDict = classifier.createWordDictionary()
 
     #pass the dictionary to create madlibs, return a string

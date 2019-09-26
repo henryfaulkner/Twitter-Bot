@@ -1,7 +1,7 @@
 from textblob import TextBlob
-#from unique import unique
+from .unique import unique
 
-class ClassifyPoS:
+class classifyPoS:
     '''Classifies twitter words into parts of speech'''
 
     def __init__(self, words):
@@ -18,7 +18,7 @@ class ClassifyPoS:
 
         self.words = words
         self.classified = words.tags
-        self.partsOfSpeech = {
+        self.partOfSpeechArgs = {
             'singularNoun' : ["NN", "NNP"],
             'pluralNoun' : ["NNS", "NNPS"],
             'regularAdj' : ["JJ"],

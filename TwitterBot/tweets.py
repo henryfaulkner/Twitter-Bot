@@ -41,7 +41,7 @@ class tweets:
             print("Tweepy error calling user_timeline")
 
 
-        return stringOfTweets
+        return stringTweets
         
     def postTweet(self, tweet, sendingUser, chosenUser, tweetID):
         '''
@@ -62,11 +62,12 @@ class tweets:
         '''
         tuples = []
         lastTweetID = self.getLastTweetID()
-        query = "@testBot87055890" #THIS SHOULD PROBABLY BE CHOSENUSER
+        chosenUser = "kanyewest"
+        query = chosenUser #THIS SHOULD PROBABLY BE CHOSENUSER
         print("Processing...")
         #load tweets addressed to host
         try:
-            requests = self.api.search(q = query, count = 1)#used to 100
+            requests = self.api.search(q = query, count = 100)#used to 100
         except:
             print("tweepy error in search")
             
