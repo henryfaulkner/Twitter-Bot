@@ -62,7 +62,8 @@ class tweets:
         '''
         tuples = []
         lastTweetID = self.getLastTweetID()
-        query = "kanyewest" #THIS SHOULD PROBABLY BE CHOSENUSER
+        chosenUser = "kanyewest"
+        query = chosenUser #THIS SHOULD PROBABLY BE CHOSENUSER
         print("Processing...")
         #load tweets addressed to host
         try:

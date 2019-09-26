@@ -30,7 +30,7 @@ class tweets:
         '''
         extracts most recent 100 tweets
         '''
-        numTweets = 100
+        numTweets = 10
         stringTweets = None
         try:
             tweets = self.api.user_timeline(username,tweet_mode="extended", count= numTweets)

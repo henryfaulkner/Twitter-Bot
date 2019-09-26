@@ -4,6 +4,7 @@ from .classifyPoS import classifyPoS
 from .tweets import tweets
 from .unique import unique
 from textblob import TextBlob
+from .formatter import formatter
 import time
 
 #back a directory then path to template
@@ -35,7 +36,7 @@ def main():
                 print(sendingUser)
                 generateTweet(sendingUser, chosenUser, tweetID, twitterInterface)
         print("sleeping...")
-        time.sleep(sleepMin * 60)
+        time.sleep(sleepMin * 5)
 
 def generateTweet(sendingUser, chosenUser, tweetID, twitterInterface):
     #pass username to getTweets, return a list of words
@@ -53,7 +54,7 @@ def generateTweet(sendingUser, chosenUser, tweetID, twitterInterface):
 
     #pass the dictionary to create madlibs, return a string
     sentenceGenerator = formatter(tweetDict, file, preFormat, postFormat)
-    sentenceStr = sentenceGenerator.createSenctence()
+    sentenceStr = sentenceGenerator.createSentence()
     # final tweet format: "@sendingUser 'sentence'"
     if(int(tweetID) != 0):
         twitterInterface.postTweet(sentenceStr, sendingUser, chosenUser, tweetID)

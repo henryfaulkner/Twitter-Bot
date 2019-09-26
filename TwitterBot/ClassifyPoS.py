@@ -26,6 +26,7 @@ class classifyPoS:
             'comparativeAdj' : ["JJR"],
             'presentVerb' : ["VB", "VBP", "VBZ"],
             'gerundVerb' : ["VBG"],
+            'pastVerb' : ["VBN", "VBD"],
             'comparativeAdv' : ["RBR"],
             'superlativeAdv' : ["RBS"]
             }
@@ -92,7 +93,7 @@ class classifyPoS:
             print("Error in getPOSList: param arguments is None")
             quit()
 
-        words = self.classifiedWords
+        words = self.classified
         partsOfSpeech = []
 
         '''for each argument, add a new list of words 

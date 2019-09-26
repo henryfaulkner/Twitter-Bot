@@ -51,8 +51,7 @@ class formatter:
                     tempChar = word[-1]
                     word = word[:-1]
                 partOfSpeechList = self.wordsDict[word]
-                
-                print(partOfSpeechList)
+
                 #get random word
                 word = random.choice(partOfSpeechList)
                 #remove used word from list
