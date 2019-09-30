@@ -1,4 +1,4 @@
-# Twitter-Bot
+# Twitter-Bot (@testBot87055890)
 
 ## Dependencies (setup.py will automatically attempt to install these packages if you do not already have them):
 Tweepy: Handles Twitter API calls
