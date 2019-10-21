@@ -8,5 +8,10 @@ Built-in Modules: csv: Reads from CSV files
 os: Gets absolute path of files
 random: Makes random choices
 
+## How to get repository:
+	$git clone https://github.com/henryfaulkner/Twitter-Bot.git
+
 ## Execution:
 	$python3 -m TwitterBot.__main__
+	
+
